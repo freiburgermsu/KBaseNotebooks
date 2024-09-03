@@ -9,8 +9,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from baseutil import *
 
 import hashlib
-import requests
-import json
 import pandas as pd
 from pandas import DataFrame, read_csv, concat, set_option
 from cobrakbase.core.kbasefba import FBAModel
@@ -23,22 +21,10 @@ from modelseedpy.core.msgenome import normalize_role
 from modelseedpy.core.msensemble import MSEnsemble
 from modelseedpy.community.mscommunity import MSCommunity
 from modelseedpy.helpers import get_template
+import requests
 
-class LLMAPI(BaseUtil):
+class PATRICUtil(BaseUtil):
     def __init__(self):
-        BaseUtil.__init__(self,"llm_api")
-        self.msseedrecon()
-
-    def similarity(self, input):
-        url = 'https://kbase.us/services/llm_homology_api/similarity'
-
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-
-        response = requests.post(url, headers=headers, data=json.dumps(input))
-
-        return response.json()
-
-util = LLMAPI()
+        BaseUtil.__init__(self,"PATRICAPI")
+    
+util = PATRICUtil() 
